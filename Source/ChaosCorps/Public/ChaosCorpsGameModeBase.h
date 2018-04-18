@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "GameSparks/Private/GameSparksComponent.h"
 #include "ChaosCorpsGameModeBase.generated.h"
+
 
 /**
  * 
@@ -14,7 +16,15 @@ class CHAOSCORPS_API AChaosCorpsGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type reason);
 	
-	
+private:
+	UPROPERTY(VisibleAnywhere)
+		UGameSparksComponent *gameSparks;
+
+	UFUNCTION()
+		void OnGameSparksAvailable(bool available);
 	
 };
