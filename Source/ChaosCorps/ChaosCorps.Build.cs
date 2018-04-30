@@ -8,7 +8,7 @@ public class ChaosCorps : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] {"Core", "CoreUObject", "Engine", "InputCore", "GameSparks", "OnlineSubsystem"});
+		PublicDependencyModuleNames.AddRange(new string[] {"Core", "CoreUObject", "Engine", "InputCore", "GameSparks", "OnlineSubsystem","UMG", "Slate", "SlateCore", "ProceduralMeshComponent"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {});
 

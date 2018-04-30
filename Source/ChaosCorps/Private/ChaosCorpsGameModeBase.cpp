@@ -3,6 +3,8 @@
 #include "ChaosCorpsGameModeBase.h"
 #include "ChaosCorps.h"
 #include "GameSparks/Public/GameSparksModule.h"
+#include "CCStateManager.h"
+#include "GameSparksStatics.h"
 
 void AChaosCorpsGameModeBase::BeginPlay()
 {
@@ -19,6 +21,9 @@ void AChaosCorpsGameModeBase::BeginPlay()
 		gameSparks->Disconnect();
 		gameSparks->Connect(FString("o352423DGsUf"), FString("jUfp3gnc0LWfZiCXrrBNMZcfvvaznCeB"), true, false); //key, secret
 	}
+
+	//init statics
+	UGameSparksStatics::InitStatics(GetWorld());
 }
 
 void AChaosCorpsGameModeBase::EndPlay(EEndPlayReason::Type reason)
@@ -35,6 +40,14 @@ void AChaosCorpsGameModeBase::OnGameSparksAvailable(bool available)
 	if (available) {
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), TEXT("Gamesparks available"));
+		}
+
+		//show login screen if connection success
+		if (GetWorld()->GetGameInstance()) {
+			UCCStateManager *stateManager = Cast<UCCStateManager>(GetWorld()->GetGameInstance());
+
+			//change to login state
+			stateManager->ChangeState(EGameState::ELoginScreen);
 		}
 	}
 	else

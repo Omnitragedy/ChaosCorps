@@ -13,8 +13,23 @@ UCLASS()
 class CHAOSCORPS_API ULoginUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Login Screen")
+		FString username;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Login Screen")
+		FString password;
 	
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Login Screen")
+		void OnLoginClicked();
+
+	UFUNCTION(BlueprintCallable, Category = "Login Screen")
+		void OnRegisterClicked();
+
+	UFUNCTION(BlueprintCallable, Category = "Login Screen")
+		void OnQuitClicked();
 	
 	
 };
